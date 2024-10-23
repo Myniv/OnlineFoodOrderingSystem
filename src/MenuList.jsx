@@ -1,0 +1,75 @@
+const menuList = [
+  {
+    id: 1,
+    name: "Nasi Goreng",
+    price: 15000,
+    category: "Makanan",
+    rating: 4.6,
+    isAvailable: true,
+  },
+  {
+    name: "Ayam Bakar",
+    price: 30000,
+    category: "Makanan",
+    rating: 4.8,
+    isAvailable: true,
+  },
+  {
+    name: "Mie Ayam",
+    price: 15000,
+    category: "Makanan",
+    rating: 4.3,
+    isAvailable: true,
+  },
+  {
+    name: "Es Teh Manis",
+    price: 5000,
+    category: "Minuman",
+    rating: 4.7,
+    isAvailable: true,
+  },
+  {
+    name: "Kopi Hitam",
+    price: 12000,
+    category: "Minuman",
+    rating: 4.2,
+    isAvailable: true,
+  },
+  {
+    name: "Sop Buah",
+    price: 18000,
+    category: "Minuman",
+    rating: 4.6,
+    isAvailable: true,
+  },
+  {
+    name: "Pisang Goreng",
+    price: 10000,
+    category: "Cemilan",
+    rating: 4.4,
+    isAvailable: true,
+  },
+  {
+    name: "Roti Bakar",
+    price: 25000,
+    category: "Cemilan",
+    rating: 4.9,
+    isAvailable: true,
+  },
+  {
+    name: "Es Krim",
+    price: 15000,
+    category: "Cemilan",
+    rating: 4.8,
+    isAvailable: false,
+  },
+  {
+    name: "Teh Tarik",
+    price: 10000,
+    category: "Minuman",
+    rating: 4.5,
+    isAvailable: true,
+  },
+];
+
+export {menuList}
