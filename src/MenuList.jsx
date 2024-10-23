@@ -8,6 +8,7 @@ const menuList = [
     isAvailable: true,
   },
   {
+    id: 2,
     name: "Ayam Bakar",
     price: 30000,
     category: "Makanan",
@@ -15,6 +16,7 @@ const menuList = [
     isAvailable: true,
   },
   {
+    id: 3,
     name: "Mie Ayam",
     price: 15000,
     category: "Makanan",
@@ -22,6 +24,7 @@ const menuList = [
     isAvailable: true,
   },
   {
+    id: 4,
     name: "Es Teh Manis",
     price: 5000,
     category: "Minuman",
@@ -29,6 +32,7 @@ const menuList = [
     isAvailable: true,
   },
   {
+    id: 5,
     name: "Kopi Hitam",
     price: 12000,
     category: "Minuman",
@@ -36,6 +40,7 @@ const menuList = [
     isAvailable: true,
   },
   {
+    id: 6,
     name: "Sop Buah",
     price: 18000,
     category: "Minuman",
@@ -43,6 +48,7 @@ const menuList = [
     isAvailable: true,
   },
   {
+    id: 7,
     name: "Pisang Goreng",
     price: 10000,
     category: "Cemilan",
@@ -50,6 +56,7 @@ const menuList = [
     isAvailable: true,
   },
   {
+    id: 8,
     name: "Roti Bakar",
     price: 25000,
     category: "Cemilan",
@@ -57,6 +64,7 @@ const menuList = [
     isAvailable: true,
   },
   {
+    id: 9,
     name: "Es Krim",
     price: 15000,
     category: "Cemilan",
@@ -64,6 +72,7 @@ const menuList = [
     isAvailable: false,
   },
   {
+    id: 10,
     name: "Teh Tarik",
     price: 10000,
     category: "Minuman",
