@@ -10,8 +10,6 @@ const AddMenuForm = () => {
     isAvailable: "",
   });
 
-  const [errors, setErrors] = useState({});
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -20,6 +18,7 @@ const AddMenuForm = () => {
     });
   };
 
+  const [errors, setErrors] = useState({});
   const validateForm = () => {
     const newErrors = {};
     if (
@@ -46,7 +45,6 @@ const AddMenuForm = () => {
     e.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
-      //   onAddMenu(formData);
       setFormData({
         name: "",
         price: "",
@@ -54,6 +52,8 @@ const AddMenuForm = () => {
         rating: "",
         isAvailable: "",
       });
+      alert("The new menu has been submitted!!");
+
       setErrors({});
     } else {
       setErrors(validationErrors);
@@ -110,6 +110,7 @@ const AddMenuForm = () => {
           className="form-select"
           value={formData.category}
           onChange={handleChange}
+          required
         >
           <option value="" disabled>
             Select category

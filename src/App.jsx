@@ -5,6 +5,7 @@ import { Footer } from "./Footer";
 import { MenuTable } from "./MenuTable";
 import { AddMenuForm } from "./MenuForm";
 import { CustomerTable } from "./CustomerTable";
+import { AddCustomerForm } from "./CustomerForm";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,6 +17,7 @@ function App() {
         {/* <MenuTable /> */}
         {/* <AddMenuForm /> */}
         <CustomerTable />
+        <AddCustomerForm />
       </div>
       <Footer />
     </>

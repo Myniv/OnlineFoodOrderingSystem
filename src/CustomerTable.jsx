@@ -15,7 +15,7 @@ const CustomerTable = () => {
           <tr scope="row" key={customerList.id}>
             <td key={customerList.name}>{customerList.name}</td>
             <td key={customerList.email}>{customerList.email}</td>
-            <td key={customerList.phoneNumber}>{customerList.phoneNumber}</td>
+            <td key={customerList.phonenumber}>{customerList.phonenumber}</td>
             <td key={customerList.address}>{customerList.address}</td>
           </tr>
         ))}
