@@ -81,4 +81,4 @@ const menuList = [
   },
 ];
 
-export {menuList}
+export { menuList };
