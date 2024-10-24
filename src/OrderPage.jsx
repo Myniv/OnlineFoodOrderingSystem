@@ -1,22 +1,19 @@
 import "./App.css";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { MenuTable } from "./MenuTable";
-import { AddMenuForm } from "./MenuForm";
+import OrderForm from "./OrderForm";
 
-
-function App() {
+function OrderPage() {
 
   return (
     <>
       <Header />
       <div className="container">
-        <MenuTable />
-        <AddMenuForm />
+        <OrderForm />
       </div>
       <Footer />
     </>
   );
 }
 
-export default App;
+export default OrderPage;

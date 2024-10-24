@@ -87,6 +87,7 @@ const OrderForm = () => {
             id="customer"
             className="form-control"
             onChange={handleCustomerChange}
+            required
           >
             <option value="">-- Select Customer --</option>
             {customerList.map((customer) => (

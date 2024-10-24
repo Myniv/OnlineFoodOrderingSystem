@@ -65,102 +65,113 @@ const AddMenuForm = () => {
   );
 
   return (
-    <form onSubmit={handleSubmit} className="mb-4">
-      <div className="mb-3">
-        <label htmlFor="name" className="form-label">
-          Name
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          className={`form-control ${errors.name ? "is-invalid" : ""}`}
-          value={formData.name}
-          onChange={handleChange}
-        />
-        {/* If name error, show <div> */}
-        {/* This is the same as the rest*/}
-        {errors.name && <div className="invalid-feedback">{errors.name}</div>}
-      </div>
+    <>
+      <br></br>
+      <br></br>
+      <h2>Form Menu Input</h2>
+      <div className="container border border-dark">
+        <form onSubmit={handleSubmit} className="mb-4">
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              className={`form-control ${errors.name ? "is-invalid" : ""}`}
+              value={formData.name}
+              onChange={handleChange}
+            />
+            {/* If name error, show <div> */}
+            {/* This is the same as the rest*/}
+            {errors.name && (
+              <div className="invalid-feedback">{errors.name}</div>
+            )}
+          </div>
 
-      <div className="mb-3">
-        <label htmlFor="price" className="form-label">
-          Price
-        </label>
-        <input
-          type="number"
-          id="price"
-          name="price"
-          className={`form-control ${errors.price ? "is-invalid" : ""}`}
-          value={formData.price}
-          onChange={handleChange}
-          min="0.01"
-          step="0.01"
-        />
-        {errors.price && <div className="invalid-feedback">{errors.price}</div>}
-      </div>
+          <div className="mb-3">
+            <label htmlFor="price" className="form-label">
+              Price
+            </label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              className={`form-control ${errors.price ? "is-invalid" : ""}`}
+              value={formData.price}
+              onChange={handleChange}
+              min="0.01"
+              step="0.01"
+            />
+            {errors.price && (
+              <div className="invalid-feedback">{errors.price}</div>
+            )}
+          </div>
 
-      <div className="mb-3">
-        <label htmlFor="category" className="form-label">
-          Category
-        </label>
-        <select
-          id="category"
-          name="category"
-          className="form-select"
-          value={formData.category}
-          onChange={handleChange}
-          required
-        >
-          <option value="" disabled>
-            Select category
-          </option>
-          {unikCategorys.map((category) => (
-            <option key={category} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
-      </div>
+          <div className="mb-3">
+            <label htmlFor="category" className="form-label">
+              Category
+            </label>
+            <select
+              id="category"
+              name="category"
+              className="form-select"
+              value={formData.category}
+              onChange={handleChange}
+              required
+            >
+              <option value="" disabled>
+                Select category
+              </option>
+              {unikCategorys.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
 
-      <div className="mb-3">
-        <label htmlFor="rating" className="form-label">
-          Rating
-        </label>
-        <input
-          type="number"
-          id="rating"
-          name="rating"
-          className={`form-control ${errors.rating ? "is-invalid" : ""}`}
-          value={formData.rating}
-          onChange={handleChange}
-          min="0"
-          max="5"
-          step="0.1"
-        />
-        {errors.rating && (
-          <div className="invalid-feedback">{errors.rating}</div>
-        )}
-      </div>
+          <div className="mb-3">
+            <label htmlFor="rating" className="form-label">
+              Rating
+            </label>
+            <input
+              type="number"
+              id="rating"
+              name="rating"
+              className={`form-control ${errors.rating ? "is-invalid" : ""}`}
+              value={formData.rating}
+              onChange={handleChange}
+              min="0"
+              max="5"
+              step="0.1"
+            />
+            {errors.rating && (
+              <div className="invalid-feedback">{errors.rating}</div>
+            )}
+          </div>
 
-      <div className="mb-3 form-check">
-        <input
-          type="checkbox"
-          id="isAvailable"
-          name="isAvailable"
-          className="form-check-input"
-          checked={formData.isAvailable}
-          onChange={handleChange}
-        />
-        <label htmlFor="isAvailable" className="form-check-label">
-          Is Available
-        </label>
-      </div>
+          <div className="mb-3 form-check">
+            <input
+              type="checkbox"
+              id="isAvailable"
+              name="isAvailable"
+              className="form-check-input"
+              checked={formData.isAvailable}
+              onChange={handleChange}
+            />
+            <label htmlFor="isAvailable" className="form-check-label">
+              Is Available
+            </label>
+          </div>
 
-      <button type="submit" className="btn btn-primary">
-        Add Menu
-      </button>
-    </form>
+          <button type="submit" className="btn btn-primary">
+            Add Menu
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 
