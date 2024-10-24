@@ -34,7 +34,8 @@ const OrderForm = () => {
     if (selectedMenu && selectedMenu.isAvailable) {
       setFormData({
         ...formData,
-        menus: [...formData.menus, selectedMenu], // Add selected menu to the menus[]
+        // Add selected menu to the menus[] so it can be showed up
+        menus: [...formData.menus, selectedMenu],
       });
     }
   };
@@ -47,9 +48,14 @@ const OrderForm = () => {
     });
   };
 
+  //To check error
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.customerName || formData.customerName.length < 2 || formData.customerName.length > 100) {
+    if (
+      !formData.customerName ||
+      formData.customerName.length < 2 ||
+      formData.customerName.length > 100
+    ) {
       newErrors.customerName = "Please select customer!";
     }
 
@@ -64,7 +70,9 @@ const OrderForm = () => {
     e.preventDefault();
     const validationErrors = validateForm();
 
+    //If there is no error
     if (Object.keys(validationErrors).length === 0) {
+      //Submit order
       setOrderSubmitted(true);
       setErrors({});
     } else {
@@ -78,7 +86,7 @@ const OrderForm = () => {
       <form onSubmit={handleSubmit}>
         <h3>Order Form</h3>
 
-        {/* Customer selection */}
+        {/* To select customer */}
         <div className="mb-3">
           <label htmlFor="customer" className="form-label">
             Select Customer
@@ -98,7 +106,7 @@ const OrderForm = () => {
           </select>
         </div>
 
-        {/* Automatically populated customer fields */}
+        {/* If the customer have been selected, this field auto fill in */}
         <div className="mb-3">
           <label htmlFor="customerName" className="form-label">
             Customer Name
@@ -107,7 +115,9 @@ const OrderForm = () => {
             type="text"
             id="customerName"
             name="customerName"
-            className={`form-control ${errors.customerName ? "is-invalid" : ""}`}
+            className={`form-control ${
+              errors.customerName ? "is-invalid" : ""
+            }`}
             value={formData.customerName}
             readOnly
           />
@@ -132,7 +142,7 @@ const OrderForm = () => {
           )}
         </div>
 
-        {/* Menu selection */}
+        {/* To select menuu */}
         <div className="mb-3">
           <label htmlFor="menu" className="form-label">
             Select Menu
@@ -151,7 +161,7 @@ const OrderForm = () => {
           </select>
         </div>
 
-        {/* Display selected menus with option to remove */}
+        {/* If the menu have been selected, it displayed it and  have button to remove it*/}
         {formData.menus.length > 0 && (
           <div>
             <h5>Selected Menus</h5>
@@ -181,7 +191,7 @@ const OrderForm = () => {
         </button>
       </form>
 
-      {/* Display submitted order */}
+      {/* To show up the menu and customer that have been selected*/}
       {orderSubmitted && (
         <div className="mt-4">
           <h4>Order Summary</h4>

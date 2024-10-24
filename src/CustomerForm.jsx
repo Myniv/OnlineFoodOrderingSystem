@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const AddCustomerForm = () => {
+  //Customer data
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -8,6 +9,7 @@ const AddCustomerForm = () => {
     phonenumber: "",
   });
 
+  //To set errors for validation
   const [errors, setErrors] = useState({});
   const validateForm = () => {
     const newErrors = {};
@@ -26,6 +28,7 @@ const AddCustomerForm = () => {
     }
 
     //Phone validation like this
+    //Still doesnt work, idk
     const phoneRegex = /^[0-9]{10,15}$/;
     if (
       !formData.phonenumber ||
@@ -40,6 +43,7 @@ const AddCustomerForm = () => {
     return newErrors;
   };
 
+  //To change when user type in
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -51,7 +55,9 @@ const AddCustomerForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
+    //If no errors, reset data to empty
     if (Object.keys(validationErrors).length === 0) {
+      //To reset form to empty
       setFormData({
         name: "",
         email: "",

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { menuList } from "./MenuList";
 const AddMenuForm = () => {
+  //Menu Data
   const [formData, setFormData] = useState({
     id: "",
     name: "",
@@ -10,14 +11,9 @@ const AddMenuForm = () => {
     isAvailable: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
+  
 
+  //set error validation
   const [errors, setErrors] = useState({});
   const validateForm = () => {
     const newErrors = {};
@@ -41,9 +37,20 @@ const AddMenuForm = () => {
     return newErrors;
   };
 
+  //To change when user type in
+  const handleChange = (e) => {
+    //the type checked is for when the menu available, it can be choose
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
+    //If no errors from validation, submit and reset form to empty
     if (Object.keys(validationErrors).length === 0) {
       setFormData({
         name: "",
@@ -60,8 +67,9 @@ const AddMenuForm = () => {
     }
   };
 
+  //To make category from menulist no duplicate
   const unikCategorys = Array.from(
-    new Set(menuList.map((bookList) => bookList.category))
+    new Set(menuList.map((menuList) => menuList.category))
   );
 
   return (
