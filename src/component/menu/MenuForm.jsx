@@ -56,7 +56,7 @@ const AddMenuForm = () => {
       //To make new id from previous data
       const newMenu = { ...formData, id: menu.length + 1 };
 
-      //Add newMenu array (from form) to the menu table (from table list)
+      //to the menu table (from table list (menu)), Add newMenu array (from form) with id ((new menu)) 
       setMenu([...menu, newMenu]);
 
       //To reset form to empty after submitted

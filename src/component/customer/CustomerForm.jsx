@@ -64,7 +64,7 @@ const AddCustomerForm = () => {
       //to make new id based from previous data id + 1
       const newCustomer = {...formData, id: customer.length+1};
       
-      //Add newCustomer array (from form) to the customer table(from customer list)
+      //to the customer table(from customer list (...customer)), /Add newCustomer array (from form) with list ((new customer))
       setCustomer([...customer, newCustomer]);
 
       //To reset form to empty
