@@ -1,10 +1,8 @@
-import "./App.css";
-import { Header } from "./Header";
-import { Footer } from "./Footer";
-import OrderForm from "./OrderForm";
+import { Header } from "../component/Header";
+import { Footer } from "../component/Footer";
+import OrderForm from "../component/order/OrderForm";
 
 function OrderPage() {
-
   return (
     <>
       <Header />

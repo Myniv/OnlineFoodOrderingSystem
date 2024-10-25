@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { customerList } from "./CustomerList";
-import { menuList } from "./MenuList";
+import { customerList } from "../customer/CustomerList";
+import { menuList } from "../menu/MenuList";
 
 const OrderForm = () => {
   const [formData, setFormData] = useState({

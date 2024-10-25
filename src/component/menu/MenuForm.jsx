@@ -11,8 +11,6 @@ const AddMenuForm = () => {
     isAvailable: "",
   });
 
-  
-
   //set error validation
   const [errors, setErrors] = useState({});
   const validateForm = () => {
