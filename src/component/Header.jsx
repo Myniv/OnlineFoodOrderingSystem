@@ -1,5 +1,4 @@
-import mynivLogo from "./img/MynivLogo1.png";
-import cart from "./img/cart.png";
+//Import image immediately in html with //img/MynivLogo1.png
 const Header = () => {
   return (
       <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom bg-light">
@@ -10,10 +9,10 @@ const Header = () => {
           >
             <img
               className="img-fluid"
-              src={mynivLogo}
+              src="/img/MynivLogo1.png"
               alt="Myniv"
               style={{ width: "50px", height: "50px" }}
-            />{" "}
+            />
           </a>
         </div>
 
@@ -42,7 +41,7 @@ const Header = () => {
             <a href="/OrderPage" className="nav-link px-2">
               <img
                 className="img-fluid"
-                src={cart}
+                src="/img/cart.png"
                 alt="Cart"
                 style={{ width: "25px", height: "25px" }}
               />
