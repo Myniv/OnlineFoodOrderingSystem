@@ -11,6 +11,8 @@ const AddMenuForm = () => {
     isAvailable: "",
   });
 
+  
+
   //set error validation
   const [errors, setErrors] = useState({});
   const validateForm = () => {
@@ -75,7 +77,7 @@ const AddMenuForm = () => {
       <br></br>
       <br></br>
       <h2>Form Menu Input</h2>
-      <div className="container border border-dark">
+      <div className="container border">
         <form onSubmit={handleSubmit} className="mb-4">
           <div className="mb-3">
             <label htmlFor="name" className="form-label">

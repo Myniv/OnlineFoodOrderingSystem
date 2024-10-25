@@ -76,8 +76,8 @@ const AddCustomerForm = () => {
     <>
       <br></br>
       <br></br>
-      <h2>Form Menu Input</h2>
-      <div className="container border border-dark">
+      <h2>Form Customer Input</h2>
+      <div className="container border">
         <form onSubmit={handleSubmit} className="mb-4">
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
