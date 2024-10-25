@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { menuList } from "./MenuList";
+import { MenuTable } from "./MenuTable";
 const AddMenuForm = () => {
   //Menu Data
   const [formData, setFormData] = useState({
@@ -10,6 +11,8 @@ const AddMenuForm = () => {
     rating: "",
     isAvailable: "",
   });
+
+  const [menu, setMenu] = useState(menuList);
 
   //set error validation
   const [errors, setErrors] = useState({});
@@ -50,6 +53,13 @@ const AddMenuForm = () => {
     const validationErrors = validateForm();
     //If no errors from validation, submit and reset form to empty
     if (Object.keys(validationErrors).length === 0) {
+      //To make new id from previous data
+      const newMenu = { ...formData, id: menu.length + 1 };
+
+      //Add newMenu array (from form) to the menu table (from table list)
+      setMenu([...menu, newMenu]);
+
+      //To reset form to empty after submitted
       setFormData({
         name: "",
         price: "",
@@ -72,6 +82,7 @@ const AddMenuForm = () => {
 
   return (
     <>
+      <MenuTable menuList={menu} />
       <br></br>
       <br></br>
       <h2>Form Menu Input</h2>

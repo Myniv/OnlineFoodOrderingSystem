@@ -1,6 +1,6 @@
 import { Header } from "../component/Header";
 import { Footer } from "../component/Footer";
-import { CustomerTable } from "../component/customer/CustomerTable";
+// import { CustomerTable } from "../component/customer/CustomerTable";
 import { AddCustomerForm } from "../component/customer/CustomerForm";
 
 function CustomerPage() {
@@ -8,7 +8,7 @@ function CustomerPage() {
     <>
       <Header />
       <div className="container">
-        <CustomerTable />
+        {/* <CustomerTable /> */}
         <AddCustomerForm />
       </div>
       <Footer />

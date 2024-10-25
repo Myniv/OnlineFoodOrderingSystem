@@ -1,5 +1,5 @@
-import { menuList } from "./MenuList";
-const MenuTable = () => {
+// import { menuList } from "./MenuList";
+const MenuTable = ({menuList}) => {
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center">

@@ -1,5 +1,5 @@
-import { customerList } from "./CustomerList";
-const CustomerTable = () => {
+// import { customerList } from "./CustomerList";
+const CustomerTable = ({customerList}) => {
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center">

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { customerList } from "./CustomerList";
+import { CustomerTable } from "./CustomerTable";
 
 const AddCustomerForm = () => {
   //Customer data
@@ -8,6 +10,8 @@ const AddCustomerForm = () => {
     address: "",
     phonenumber: "",
   });
+
+  const [customer, setCustomer] = useState(customerList)
 
   //To set errors for validation
   const [errors, setErrors] = useState({});
@@ -57,6 +61,12 @@ const AddCustomerForm = () => {
     const validationErrors = validateForm();
     //If no errors, reset data to empty
     if (Object.keys(validationErrors).length === 0) {
+      //to make new id based from previous data id + 1
+      const newCustomer = {...formData, id: customer.length+1};
+      
+      //Add newCustomer array (from form) to the customer table(from customer list)
+      setCustomer([...customer, newCustomer]);
+
       //To reset form to empty
       setFormData({
         name: "",
@@ -74,6 +84,7 @@ const AddCustomerForm = () => {
 
   return (
     <>
+      <CustomerTable customerList={customer}/>
       <br></br>
       <br></br>
       <h2>Form Customer Input</h2>
