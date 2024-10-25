@@ -79,81 +79,87 @@ const AddCustomerForm = () => {
       <h2>Form Customer Input</h2>
       <div className="container border">
         <form onSubmit={handleSubmit} className="mb-4">
-          <div className="mb-3">
-            <label htmlFor="name" className="form-label">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              className={`form-control ${errors.name ? "is-invalid" : ""}`}
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-            {/* If name error, show <div> */}
-            {/* This is the same as the rest*/}
-            {errors.name && (
-              <div className="invalid-feedback">{errors.name}</div>
-            )}
-          </div>
+          <div className="row">
+            <div className="col-md-6">
+              <div className="mb-3">
+                <label htmlFor="name" className="form-label">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className={`form-control ${errors.name ? "is-invalid" : ""}`}
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+                {/* If name error, show <div> */}
+                {/* This is the same as the rest*/}
+                {errors.name && (
+                  <div className="invalid-feedback">{errors.name}</div>
+                )}
+              </div>
 
-          <div className="mb-3">
-            <label htmlFor="email" className="form-label">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className={`form-control ${errors.email ? "is-invalid" : ""}`}
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-            {errors.email && (
-              <div className="invalid-feedback">{errors.email}</div>
-            )}
-          </div>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className={`form-control ${errors.email ? "is-invalid" : ""}`}
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+                {errors.email && (
+                  <div className="invalid-feedback">{errors.email}</div>
+                )}
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="mb-3">
+                <label htmlFor="phonenumber" className="form-label">
+                  Phone Number
+                </label>
+                <input
+                  type="number"
+                  id="phonenumber"
+                  name="phonenumber"
+                  className={`form-control ${
+                    errors.phonenumber ? "is-invalid" : ""
+                  }`}
+                  value={formData.phonenumber}
+                  onChange={handleChange}
+                  required
+                />
+                {errors.phonenumber && (
+                  <div className="invalid-feedback">{errors.phonenumber}</div>
+                )}
+              </div>
 
-          <div className="mb-3">
-            <label htmlFor="phonenumber" className="form-label">
-              Phone Number
-            </label>
-            <input
-              type="number"
-              id="phonenumber"
-              name="phonenumber"
-              className={`form-control ${
-                errors.phonenumber ? "is-invalid" : ""
-              }`}
-              value={formData.phonenumber}
-              onChange={handleChange}
-              required
-            />
-            {errors.phonenumber && (
-              <div className="invalid-feedback">{errors.phonenumber}</div>
-            )}
+              <div className="mb-3">
+                <label htmlFor="address" className="form-label">
+                  Address
+                </label>
+                <textarea
+                  id="address"
+                  name="address"
+                  className={`form-control ${
+                    errors.address ? "is-invalid" : ""
+                  }`}
+                  value={formData.address}
+                  onChange={handleChange}
+                  required
+                />
+                {errors.address && (
+                  <div className="invalid-feedback">{errors.address}</div>
+                )}
+              </div>
+            </div>
           </div>
-
-          <div className="mb-3">
-            <label htmlFor="address" className="form-label">
-              Address
-            </label>
-            <textarea
-              id="address"
-              name="address"
-              className={`form-control ${errors.address ? "is-invalid" : ""}`}
-              value={formData.address}
-              onChange={handleChange}
-              required
-            />
-            {errors.address && (
-              <div className="invalid-feedback">{errors.address}</div>
-            )}
-          </div>
-
           <button type="submit" className="btn btn-primary">
             Add Customer
           </button>
