@@ -93,6 +93,7 @@ const AddCustomerForm = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  placeholder="Name"
                 />
                 {/* If name error, show <div> */}
                 {/* This is the same as the rest*/}
@@ -113,6 +114,7 @@ const AddCustomerForm = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  placeholder="Email"
                 />
                 {errors.email && (
                   <div className="invalid-feedback">{errors.email}</div>
@@ -134,6 +136,7 @@ const AddCustomerForm = () => {
                   value={formData.phonenumber}
                   onChange={handleChange}
                   required
+                  placeholder="Phone Number"
                 />
                 {errors.phonenumber && (
                   <div className="invalid-feedback">{errors.phonenumber}</div>
@@ -153,6 +156,7 @@ const AddCustomerForm = () => {
                   value={formData.address}
                   onChange={handleChange}
                   required
+                  placeholder="Address"
                 />
                 {errors.address && (
                   <div className="invalid-feedback">{errors.address}</div>

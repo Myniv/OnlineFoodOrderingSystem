@@ -90,6 +90,7 @@ const AddMenuForm = () => {
                   className={`form-control ${errors.name ? "is-invalid" : ""}`}
                   value={formData.name}
                   onChange={handleChange}
+                  placeholder="Name"
                 />
                 {/* If name error, show <div> */}
                 {/* This is the same as the rest*/}
@@ -136,6 +137,7 @@ const AddMenuForm = () => {
                   onChange={handleChange}
                   min="0.01"
                   step="0.01"
+                  placeholder="Price"
                 />
                 {errors.price && (
                   <div className="invalid-feedback">{errors.price}</div>
@@ -158,6 +160,7 @@ const AddMenuForm = () => {
                   min="0"
                   max="5"
                   step="0.1"
+                  placeholder="Rating"
                 />
                 {errors.rating && (
                   <div className="invalid-feedback">{errors.rating}</div>

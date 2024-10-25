@@ -97,7 +97,9 @@ const OrderForm = () => {
               onChange={handleCustomerChange}
               required
             >
-              <option value="">Select Customer</option>
+              <option value="" disabled>
+                Select Customer
+              </option>
               {customerList.map((customer) => (
                 <option key={customer.id} value={customer.id}>
                   {customer.name}
@@ -120,6 +122,7 @@ const OrderForm = () => {
               }`}
               value={formData.customerName}
               readOnly
+              placeholder="Customer Name"
             />
             {errors.customerName && (
               <div className="invalid-feedback">{errors.customerName}</div>
@@ -136,6 +139,7 @@ const OrderForm = () => {
               className={`form-control ${errors.address ? "is-invalid" : ""}`}
               value={formData.address}
               readOnly
+              placeholder="Customer Address"
             />
             {errors.address && (
               <div className="invalid-feedback">{errors.address}</div>
