@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // import { menuList } from "./MenuList";
 const MenuTable = ({menuList}) => {
   return (

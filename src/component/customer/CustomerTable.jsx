@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // import { customerList } from "./CustomerList";
 const CustomerTable = ({customerList}) => {
   return (

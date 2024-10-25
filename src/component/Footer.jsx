@@ -5,9 +5,8 @@ const Footer = () => {
     // <div class="d-flex flex-column min-vh-100">
     <footer className="p-3 bg-light text-black mt-5 ">
       <div className="container">
-        <p className="mb-1 text-center">{`Copyright © ${year}  ${name}. All Rights Reserved`}</p>
         <div className="row">
-          <div className="col-md-6">
+          <div className="col">
             <p className="mb-0 text-left">
               Contact Us
               <br></br>
@@ -39,7 +38,10 @@ const Footer = () => {
               </a>
             </p>
           </div>
-          <div className="col-md-6 d-flex justify-content-end align-items-center">
+          <div className="col">
+            <p className="mb-1 text-center">{`Copyright © ${year}  ${name}. All Rights Reserved`}</p>
+          </div>
+          <div className="col d-flex justify-content-end align-items-center">
             <a href="/" className="nav-link px-2 text-primary">
               Menu
             </a>
