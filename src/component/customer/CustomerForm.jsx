@@ -1,17 +1,34 @@
-import { useState } from "react";
-import { customerList } from "./CustomerList";
-import { CustomerTable } from "./CustomerTable";
+/* eslint-disable react/prop-types */
+import { useEffect, useRef, useState } from "react";
+// import { customerList } from "./CustomerList";
+// import { CustomerTable } from "./CustomerTable";
 
-const AddCustomerForm = () => {
+const AddCustomerForm = ({
+  customer,
+  setCustomer,
+  isEditingCustomer,
+  setIsEditingCustomer,
+  selectedCustomer,
+}) => {
   //Customer data
   const [formData, setFormData] = useState({
+    id: "",
     name: "",
     email: "",
     address: "",
     phonenumber: "",
   });
 
-  const [customer, setCustomer] = useState(customerList)
+  const addOrEditTitle = useRef("Form Add Customer");
+  const addOrEditButton = useRef("Add Customer");
+
+  useEffect(() => {
+    if (isEditingCustomer && selectedCustomer) {
+      setFormData(selectedCustomer);
+      addOrEditTitle.current = "Form Edit Customer";
+      addOrEditButton.current = "Edit Customer";
+    }
+  }, [isEditingCustomer, selectedCustomer]);
 
   //To set errors for validation
   const [errors, setErrors] = useState({});
@@ -56,16 +73,44 @@ const AddCustomerForm = () => {
     });
   };
 
+  const onUpdateCustomer = () => {
+    const editedCustomer = customer.map((customer) => {
+      if (formData.id === customer.id) {
+        return {
+          ...customer,
+          id: formData.id,
+          name: formData.name,
+          email: formData.email,
+          address: formData.address,
+          phonenumber: formData.phonenumber,
+        };
+      } else {
+        return customer;
+      }
+    });
+
+    setCustomer(editedCustomer);
+    alert("The Customer has been Editted!!");
+  };
+
+  const onAddCustomer = () => {
+    const newCustomer = { ...formData, id: customer.length + 1 };
+    setCustomer([...customer, newCustomer]);
+    alert("The new Customer has been Added!!");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
     //If no errors, reset data to empty
     if (Object.keys(validationErrors).length === 0) {
-      //to make new id based from previous data id + 1
-      const newCustomer = {...formData, id: customer.length+1};
-      
-      //to the customer table(from customer list (...customer)), /Add newCustomer array (from form) with list ((new customer))
-      setCustomer([...customer, newCustomer]);
+      if (isEditingCustomer) {
+        onUpdateCustomer();
+        setIsEditingCustomer(false);
+        onEndEdit();
+      } else {
+        onAddCustomer();
+      }
 
       //To reset form to empty
       setFormData({
@@ -75,19 +120,36 @@ const AddCustomerForm = () => {
         phonenumber: "",
       });
 
-      alert("The new customer has been submitted!!");
       setErrors({});
     } else {
       setErrors(validationErrors);
     }
   };
 
+  const onCancelEdit = () => {
+    setFormData({
+      id: "",
+      name: "",
+      email: "",
+      address: "",
+      phonenumber: "",
+    });
+
+    setIsEditingCustomer(false);
+    addOrEditButton.current = "Add Customer";
+    addOrEditTitle.current = "Form Add Customer";
+  };
+
+  const onEndEdit = () => {
+    addOrEditButton.current = "Add Customer";
+    addOrEditTitle.current = "Form Add Customer";
+  };
+
   return (
     <>
-      <CustomerTable customerList={customer}/>
       <br></br>
       <br></br>
-      <h2>Form Customer Input</h2>
+      <h2>{addOrEditTitle.current}</h2>
       <div className="container border">
         <form onSubmit={handleSubmit} className="mb-4">
           <div className="row">
@@ -154,7 +216,7 @@ const AddCustomerForm = () => {
                 )}
               </div>
 
-              <div className="mb-3">
+              <div className="mb-1">
                 <label htmlFor="address" className="form-label">
                   Address
                 </label>
@@ -175,9 +237,21 @@ const AddCustomerForm = () => {
               </div>
             </div>
           </div>
-          <button type="submit" className="btn btn-primary">
-            Add Customer
+          <button
+            type="submit"
+            className="btn btn-primary m-1 right text-right"
+          >
+            {addOrEditButton.current}
           </button>
+          {isEditingCustomer && (
+            <button
+              type="submit"
+              onClick={onCancelEdit}
+              className="btn btn-danger right text-right"
+            >
+              Cancel Edit
+            </button>
+          )}
         </form>
       </div>
     </>

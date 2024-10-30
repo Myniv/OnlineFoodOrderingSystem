@@ -20,7 +20,13 @@ function CustomerPage() {
           setIsEditingCustomer={setIsEditingCustomer}
           setSelectedCustomer={setSelectedCustomer}
         />
-        {/* <AddCustomerForm /> */}
+        <AddCustomerForm
+          customer={customer}
+          setCustomer={setCustomer}
+          isEditingCustomer={isEditingCustomer}
+          setIsEditingCustomer={setIsEditingCustomer}
+          selectedCustomer={selectedCustomer}
+        />
       </div>
       <Footer />
     </>
