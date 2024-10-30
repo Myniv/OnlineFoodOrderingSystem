@@ -18,18 +18,18 @@ const AddMenuForm = ({
     isAvailable: "",
   });
 
-  const addOrEditTitle = useRef("Form Add Book");
-  const addOrEditButton = useRef("Add Book");
+  const addOrEditTitle = useRef("Form Add menu");
+  const addOrEditButton = useRef("Add menu");
 
   useEffect(() => {
     if (isEditingMenu && selectedMenu) {
       setFormData(selectedMenu);
-      addOrEditTitle.current = "Form Edit Book";
-      addOrEditButton.current = "Edit Book";
+      addOrEditTitle.current = "Form Edit menu";
+      addOrEditButton.current = "Edit menu";
     }
     if (isEditingMenu == false) {
-      addOrEditTitle.current = "Form Add Book";
-      addOrEditButton.current = "Add Book";
+      addOrEditTitle.current = "Form Add menu";
+      addOrEditButton.current = "Add menu";
     }
   }, [isEditingMenu, selectedMenu]);
   //set error validation
@@ -133,15 +133,15 @@ const AddMenuForm = ({
     });
 
     setIsEditingMenu(false);
-    addOrEditButton.current = "Add Book";
-    addOrEditTitle.current = "Form Add Book";
+    addOrEditButton.current = "Add menu";
+    addOrEditTitle.current = "Form Add menu";
   };
 
   // eslint-disable-next-line no-unused-vars
   const onEndEdit = () => {
     setIsEditingMenu(false);
-    addOrEditButton.current = "Add Book";
-    addOrEditTitle.current = "Form Add Book";
+    addOrEditButton.current = "Add menu";
+    addOrEditTitle.current = "Form Add menu";
   };
 
   //To make category from menulist no duplicate
