@@ -134,7 +134,6 @@ const AddMenuForm = ({
     addOrEditTitle.current = "Form Add menu";
   };
 
-  // eslint-disable-next-line no-unused-vars
   const onEndEdit = () => {
     addOrEditButton.current = "Add menu";
     addOrEditTitle.current = "Form Add menu";
