@@ -20,13 +20,13 @@ function MenuPage() {
           setIsEditingMenu={setIsEditingMenu}
           setSelectedMenu={setSelectedMenu}
         />
-        {/* <AddMenuForm
+        <AddMenuForm
           menu={menu}
           setMenu={setMenu}
           isEditingMenu={isEditingMenu}
           setIsEditingMenu={setIsEditingMenu}
           selectedMenu={selectedMenu}
-        /> */}
+        />
       </div>
       <Footer />
     </>

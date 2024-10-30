@@ -1,7 +1,13 @@
-import { useState } from "react";
-import { menuList } from "./MenuList";
-import { MenuTable } from "./MenuTable";
-const AddMenuForm = () => {
+/* eslint-disable react/prop-types */
+import { useEffect, useRef, useState } from "react";
+// import { menuList } from "./MenuList";
+const AddMenuForm = ({
+  menu,
+  setMenu,
+  isEditingMenu,
+  setIsEditingMenu,
+  selectedMenu,
+}) => {
   //Menu Data
   const [formData, setFormData] = useState({
     id: "",
@@ -12,8 +18,20 @@ const AddMenuForm = () => {
     isAvailable: "",
   });
 
-  const [menu, setMenu] = useState(menuList);
+  const addOrEditTitle = useRef("Form Add Book");
+  const addOrEditButton = useRef("Add Book");
 
+  useEffect(() => {
+    if (isEditingMenu && selectedMenu) {
+      setFormData(selectedMenu);
+      addOrEditTitle.current = "Form Edit Book";
+      addOrEditButton.current = "Edit Book";
+    }
+    if (isEditingMenu == false) {
+      addOrEditTitle.current = "Form Add Book";
+      addOrEditButton.current = "Add Book";
+    }
+  }, [isEditingMenu, selectedMenu]);
   //set error validation
   const [errors, setErrors] = useState({});
   const validateForm = () => {
@@ -40,7 +58,7 @@ const AddMenuForm = () => {
 
   //To change when user type in
   const handleChange = (e) => {
-    //the type checked is for when the menu available, it can be choose
+    // the type checked is for when the menu available, it can be choose
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
@@ -51,14 +69,15 @@ const AddMenuForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
+
     //If no errors from validation, submit and reset form to empty
     if (Object.keys(validationErrors).length === 0) {
-      //To make new id from previous data
-      const newMenu = { ...formData, id: menu.length + 1 };
-
-      //to the menu table (from table list (menu)), Add newMenu array (from form) with id ((new menu)) 
-      setMenu([...menu, newMenu]);
-
+      if (isEditingMenu) {
+        onUpdateMenu();
+        setIsEditingMenu(false);
+      } else {
+        onAddMenu();
+      }
       //To reset form to empty after submitted
       setFormData({
         name: "",
@@ -67,7 +86,6 @@ const AddMenuForm = () => {
         rating: "",
         isAvailable: "",
       });
-      alert("The new menu has been submitted!!");
 
       setErrors({});
     } else {
@@ -75,17 +93,65 @@ const AddMenuForm = () => {
     }
   };
 
+  const onUpdateMenu = () => {
+    const editedMenu = menu.map((menu) => {
+      if (menu.id === formData.id) {
+        return {
+          ...menu,
+          id: formData.id,
+          name: formData.name,
+          price: formData.price,
+          category: formData.category,
+          rating: formData.rating,
+          isAvailable: formData.isAvailable,
+        };
+      } else {
+        return menu;
+      }
+    });
+    setMenu(editedMenu);
+
+    alert("The menu has been Editted!!");
+  };
+
+  const onAddMenu = () => {
+    //To make new id from previous data
+    const newMenu = { ...formData, id: menu.length + 1 };
+    //to the menu table (from table list (menu)), Add newMenu array (from form) with id ((new menu))
+    setMenu([...menu, newMenu]);
+    alert("The new menu has been Added!!");
+  };
+
+  const onCancelEdit = () => {
+    setFormData({
+      id: "",
+      name: "",
+      price: "",
+      category: "",
+      rating: "",
+      isAvailable: "",
+    });
+
+    setIsEditingMenu(false);
+    addOrEditButton.current = "Add Book";
+    addOrEditTitle.current = "Form Add Book";
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  const onEndEdit = () => {
+    setIsEditingMenu(false);
+    addOrEditButton.current = "Add Book";
+    addOrEditTitle.current = "Form Add Book";
+  };
+
   //To make category from menulist no duplicate
-  const unikCategorys = Array.from(
-    new Set(menuList.map((menuList) => menuList.category))
-  );
+  const unikCategorys = Array.from(new Set(menu.map((menu) => menu.category)));
 
   return (
     <>
-      <MenuTable menuList={menu} />
       <br></br>
       <br></br>
-      <h2>Form Menu Input</h2>
+      <h2>{addOrEditTitle.current}</h2>
       <div className="container border">
         <form onSubmit={handleSubmit} className="mb-4">
           <div className="row">
@@ -193,9 +259,31 @@ const AddMenuForm = () => {
               Is Available
             </label>
           </div>
-          <button type="submit" className="btn btn-primary">
-            Add Menu
-          </button>
+
+          {isEditingMenu && (
+            <div>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                // onClick={onEndEdit}
+              >
+                {addOrEditButton.current}
+              </button>
+
+              <button
+                type="submit"
+                onClick={onCancelEdit}
+                className="btn btn-danger right text-right"
+              >
+                Cancel Edit
+              </button>
+            </div>
+          )}
+          {isEditingMenu == false && (
+            <button type="submit" className="btn btn-primary">
+              {addOrEditButton.current}
+            </button>
+          )}
         </form>
       </div>
     </>
