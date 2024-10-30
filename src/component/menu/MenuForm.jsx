@@ -27,10 +27,6 @@ const AddMenuForm = ({
       addOrEditTitle.current = "Form Edit menu";
       addOrEditButton.current = "Edit menu";
     }
-    if (isEditingMenu == false) {
-      addOrEditTitle.current = "Form Add menu";
-      addOrEditButton.current = "Add menu";
-    }
   }, [isEditingMenu, selectedMenu]);
   //set error validation
   const [errors, setErrors] = useState({});
@@ -75,6 +71,7 @@ const AddMenuForm = ({
       if (isEditingMenu) {
         onUpdateMenu();
         setIsEditingMenu(false);
+        onEndEdit();
       } else {
         onAddMenu();
       }
@@ -139,7 +136,6 @@ const AddMenuForm = ({
 
   // eslint-disable-next-line no-unused-vars
   const onEndEdit = () => {
-    setIsEditingMenu(false);
     addOrEditButton.current = "Add menu";
     addOrEditTitle.current = "Form Add menu";
   };
@@ -260,28 +256,20 @@ const AddMenuForm = ({
             </label>
           </div>
 
+          <button
+            type="submit"
+            className="btn btn-primary m-3 right text-right"
+            // onClick={onEndEdit}
+          >
+            {addOrEditButton.current}
+          </button>
           {isEditingMenu && (
-            <div>
-              <button
-                type="submit"
-                className="btn btn-primary"
-                // onClick={onEndEdit}
-              >
-                {addOrEditButton.current}
-              </button>
-
-              <button
-                type="submit"
-                onClick={onCancelEdit}
-                className="btn btn-danger right text-right"
-              >
-                Cancel Edit
-              </button>
-            </div>
-          )}
-          {isEditingMenu == false && (
-            <button type="submit" className="btn btn-primary">
-              {addOrEditButton.current}
+            <button
+              type="submit"
+              onClick={onCancelEdit}
+              className="btn btn-danger right text-right"
+            >
+              Cancel Edit
             </button>
           )}
         </form>
