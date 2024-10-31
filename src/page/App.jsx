@@ -42,7 +42,7 @@ function App() {
           />
         );
       case "/OrderPage":
-        return <OrderPage />;
+        return <OrderPage menuList={menu} customerList={customer}/>;
 
       default:
         break;

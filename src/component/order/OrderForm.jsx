@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
-import { customerList } from "../customer/CustomerList";
-import { menuList } from "../menu/MenuList";
+// import { customerList } from "../customer/CustomerList";
+// import { menuList } from "../menu/MenuList";
 
-const OrderForm = () => {
+const OrderForm = ({menuList, customerList}) => {
   const [formData, setFormData] = useState({
     customerName: "",
     address: "",
@@ -103,7 +104,7 @@ const OrderForm = () => {
     }
   };
 
-  const totalPrice = formData.menus.reduce((add, menu) => add + menu.price, 0);
+  const totalPrice = formData.menus.reduce((add, menu) => add + Number(menu.price), 0);
 
   const orderSendedMessage = orderSended ? "Is Ordered" : "Being Pickedup";
 
@@ -223,7 +224,7 @@ const OrderForm = () => {
               onChange={handleMenuChange}
               value={formData.menus}
             >
-              <option value="" disabled>
+              <option value="" >
                 Select Menu
               </option>
               {checkAvailableCustomerMenu.map((menu) => (
