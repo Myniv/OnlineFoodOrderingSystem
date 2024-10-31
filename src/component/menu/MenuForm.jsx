@@ -18,14 +18,21 @@ const AddMenuForm = ({
     isAvailable: "",
   });
 
+  //another way to change title and button text
   const addOrEditTitle = useRef("Form Add menu");
   const addOrEditButton = useRef("Add menu");
+
+  //To make autofocus on name input
+  const focusNameInputMenu = useRef(null);
 
   useEffect(() => {
     if (isEditingMenu && selectedMenu) {
       setFormData(selectedMenu);
       addOrEditTitle.current = "Form Edit menu";
       addOrEditButton.current = "Edit menu";
+    }
+    if(focusNameInputMenu.current){
+      focusNameInputMenu.current.focus();
     }
   }, [isEditingMenu, selectedMenu]);
   //set error validation
@@ -163,6 +170,7 @@ const AddMenuForm = ({
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Name"
+                  ref={focusNameInputMenu}
                 />
                 {/* If name error, show <div> */}
                 {/* This is the same as the rest*/}

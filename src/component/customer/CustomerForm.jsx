@@ -19,14 +19,22 @@ const AddCustomerForm = ({
     phonenumber: "",
   });
 
+  //another way to change ttitle and button text beside using
   const addOrEditTitle = useRef("Form Add Customer");
   const addOrEditButton = useRef("Add Customer");
+
+  //To autofocus on name input
+  const focusNameInputCustomer = useRef(null);
 
   useEffect(() => {
     if (isEditingCustomer && selectedCustomer) {
       setFormData(selectedCustomer);
       addOrEditTitle.current = "Form Edit Customer";
       addOrEditButton.current = "Edit Customer";
+    }
+
+    if (focusNameInputCustomer.current) {
+      focusNameInputCustomer.current.focus();
     }
   }, [isEditingCustomer, selectedCustomer]);
 
@@ -167,6 +175,7 @@ const AddCustomerForm = ({
                   onChange={handleChange}
                   required
                   placeholder="Name"
+                  ref={focusNameInputCustomer}
                 />
                 {/* If name error, show <div> */}
                 {/* This is the same as the rest*/}
