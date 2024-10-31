@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { customerList } from "../customer/CustomerList";
 // import { menuList } from "../menu/MenuList";
 
@@ -22,7 +22,7 @@ const OrderForm = ({ menuList, customerList }) => {
   // const [orderTime, setOrderTime] = useState(0);
 
   //to countdown setOrder for changing orderStatus message, but still bug
-  const orderStatus = () => {
+  const orderStatus = (time) => {
     // return new Promise((resolve) => {
     //   setTimeout(() => {
     //     resolve(setOrderSended(true));
@@ -31,8 +31,14 @@ const OrderForm = ({ menuList, customerList }) => {
 
     setTimeout(() => {
       return setOrderSended(true);
-    }, 5000);
+    }, time);
   };
+
+  useEffect(() => {
+    if(orderSubmitted){
+      orderStatus(5000)
+    };
+  }, [orderSubmitted])
 
   //To select customer
   const handleCustomerChange = (e) => {
@@ -101,7 +107,8 @@ const OrderForm = ({ menuList, customerList }) => {
         //Submit order
         setOrderSubmitted(true);
         setOrderDetail(formData);
-        orderStatus();
+        setOrderSended(false);
+        // orderStatus();
         // getOrderStatus();
         setErrors({});
       }
@@ -128,7 +135,7 @@ const OrderForm = ({ menuList, customerList }) => {
 
   const orderSendedMessage = orderSended ? "Is Ordered" : "Being Pickedup";
 
-  const handleCancelOrder = () => {
+  const handleResetOrder = () => {
     setFormData({
       customerName: "",
       address: "",
@@ -150,7 +157,7 @@ const OrderForm = ({ menuList, customerList }) => {
       return (
         <button
           type="submit"
-          onClick={handleCancelOrder}
+          onClick={handleResetOrder}
           className="btn btn-primary mb-3"
         >
           Re-Order
@@ -160,7 +167,7 @@ const OrderForm = ({ menuList, customerList }) => {
       return (
         <button
           type="submit"
-          onClick={handleCancelOrder}
+          onClick={handleResetOrder}
           className="btn btn-danger mb-3"
         >
           Cancel Order
@@ -291,7 +298,7 @@ const OrderForm = ({ menuList, customerList }) => {
 
               <button
                 type="submit"
-                onClick={handleCancelOrder}
+                onClick={handleResetOrder}
                 className="btn btn-danger right text-right "
               >
                 Cancel Order
