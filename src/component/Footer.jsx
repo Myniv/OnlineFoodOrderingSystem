@@ -3,7 +3,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
   return (
     // <div class="d-flex flex-column min-vh-100">
-    <footer className="p-3 bg-light text-black mt-5 ">
+    <footer className="p-3 mt-5 bg-dark text-white">
       <div className="container">
         <div className="row">
           <div className="col">

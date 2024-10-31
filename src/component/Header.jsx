@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 //Import image immediately in html with //img/MynivLogo1.png
 const Header = () => {
   return (
-    <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom bg-light">
+    <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom bg-dark text-white">
       <div className="col-md-3 mb-2 mb-md-0 mx-5">
         <a
           href="/"
