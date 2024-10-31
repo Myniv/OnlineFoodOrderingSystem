@@ -1,6 +1,4 @@
-import { Header } from "../component/Header";
-import { Footer } from "../component/Footer";
-// import { MenuTable } from "../component/menu/MenuTable";
+
 import { AddMenuForm } from "../component/menu/MenuForm";
 import { menuList } from "../component/menu/MenuList";
 import { useState } from "react";
@@ -12,7 +10,6 @@ function MenuPage() {
   const [selectedMenu, setSelectedMenu] = useState(null);
   return (
     <>
-      <Header />
       <div className="container">
         <MenuTable
           menu={menu}
@@ -28,7 +25,6 @@ function MenuPage() {
           selectedMenu={selectedMenu}
         />
       </div>
-      <Footer />
     </>
   );
 }

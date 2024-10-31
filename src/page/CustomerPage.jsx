@@ -1,6 +1,4 @@
-import { Header } from "../component/Header";
-import { Footer } from "../component/Footer";
-// import { CustomerTable } from "../component/customer/CustomerTable";
+
 import { AddCustomerForm } from "../component/customer/CustomerForm";
 import { useState } from "react";
 import { customerList } from "../component/customer/CustomerList";
@@ -12,7 +10,6 @@ function CustomerPage() {
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   return (
     <>
-      <Header />
       <div className="container">
         <CustomerTable
           customer={customer}
@@ -28,7 +25,6 @@ function CustomerPage() {
           selectedCustomer={selectedCustomer}
         />
       </div>
-      <Footer />
     </>
   );
 }

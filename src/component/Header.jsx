@@ -1,7 +1,8 @@
-import { NavLink } from "react-router-dom";
+/* eslint-disable react/prop-types */
+import { Nav } from "react-bootstrap";
 
 //Import image immediately in html with //img/MynivLogo1.png
-const Header = () => {
+const Header = ({setView}) => {
   return (
     <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom bg-dark text-white">
       <div className="col-md-3 mb-2 mb-md-0 mx-5">
@@ -20,14 +21,14 @@ const Header = () => {
 
       <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 nav nav-pills">
         <li className="nav-item">
-          <NavLink
-            to="/"
+          <Nav.Link
+            onClick={() => setView('/MenuPage')}
             className={({ isActive }) => {
               return isActive ? "nav-link active" : "nav-link";
             }}
           >
             Menu
-          </NavLink>
+          </Nav.Link>
         </li>
         <li className="nav-item">
           <a href="#" className="nav-link">
@@ -40,18 +41,18 @@ const Header = () => {
           </a>
         </li>
         <li className="nav-item">
-          <NavLink
-            to="/CustomerPage"
+          <Nav.Link
+            onClick={() => setView('/CustomerPage')}
             className={({ isActive }) => {
               return isActive ? "nav-link active" : "nav-link";
             }}
           >
             Customer
-          </NavLink>
+          </Nav.Link>
         </li>
         <li>
-          <NavLink
-            to="/OrderPage"
+          <Nav.Link
+            onClick={() => setView('/OrderPage')}
             className={({ isActive }) => {
               return isActive ? "nav-link active" : "nav-link";
             }}
@@ -62,7 +63,7 @@ const Header = () => {
               alt="Cart"
               style={{ width: "25px", height: "25px" }}
             />
-          </NavLink>
+          </Nav.Link>
         </li>
       </ul>
 
