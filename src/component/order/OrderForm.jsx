@@ -3,11 +3,17 @@ import { useState } from "react";
 // import { customerList } from "../customer/CustomerList";
 // import { menuList } from "../menu/MenuList";
 
-const OrderForm = ({menuList, customerList}) => {
+const OrderForm = ({ menuList, customerList }) => {
   const [formData, setFormData] = useState({
     customerName: "",
     address: "",
     menus: [], //to show the menu after selected
+  });
+
+  const [orderDetail, setOrderDetail] = useState({
+    customerName: "",
+    address: "",
+    menus: [],
   });
 
   const [orderSubmitted, setOrderSubmitted] = useState(false);
@@ -94,6 +100,7 @@ const OrderForm = ({menuList, customerList}) => {
       if (confirm(confirmMessage)) {
         //Submit order
         setOrderSubmitted(true);
+        setOrderDetail(formData);
         orderStatus();
         // getOrderStatus();
         setErrors({});
@@ -102,9 +109,22 @@ const OrderForm = ({menuList, customerList}) => {
       setErrors(validationErrors);
       setOrderSubmitted(false);
     }
+
+    setFormData({
+      customerName: "",
+      address: "",
+      menus: [],
+    });
   };
 
-  const totalPrice = formData.menus.reduce((add, menu) => add + Number(menu.price), 0);
+  const handleTotalPrice = (priceDetail) => {
+    const totalPrice = priceDetail.menus.reduce(
+      (add, menu) => add + Number(menu.price),
+      0
+    );
+
+    return totalPrice;
+  };
 
   const orderSendedMessage = orderSended ? "Is Ordered" : "Being Pickedup";
 
@@ -114,6 +134,8 @@ const OrderForm = ({menuList, customerList}) => {
       address: "",
       menus: [],
     });
+
+    setOrderDetail(formData);
 
     setOrderSubmitted(false);
   };
@@ -224,9 +246,7 @@ const OrderForm = ({menuList, customerList}) => {
               onChange={handleMenuChange}
               value={formData.menus}
             >
-              <option value="" >
-                Select Menu
-              </option>
+              <option value="">Select Menu</option>
               {checkAvailableCustomerMenu.map((menu) => (
                 <option key={menu.id} value={menu.id}>
                   {menu.name}
@@ -255,7 +275,7 @@ const OrderForm = ({menuList, customerList}) => {
                   </li>
                 ))}
               </ul>
-              <h5 className="mt-3">Total Price - {totalPrice} IDR</h5>
+              <h5 className="mt-3">Total Price - {handleTotalPrice(formData)} IDR</h5>
             </div>
           )}
 
@@ -286,22 +306,22 @@ const OrderForm = ({menuList, customerList}) => {
           <h4>Order Detail</h4>
           <div className="container border">
             <p>
-              <strong>Customer Name:</strong> {formData.customerName}
+              <strong>Customer Name:</strong> {orderDetail.customerName}
             </p>
             <p>
-              <strong>Address:</strong> {formData.address}
+              <strong>Address:</strong> {orderDetail.address}
             </p>
             <p>
               <strong>Order Status:</strong> {orderSendedMessage}
             </p>
             <h5>Ordered Menus</h5>
             <ul>
-              {formData.menus.map((menu) => (
+              {orderDetail.menus.map((menu) => (
                 <li key={menu.id}>
                   {menu.name} - {menu.category} - {menu.price} IDR
                 </li>
               ))}
-              <h6 className="mt-2">Total Price - {totalPrice} IDR</h6>
+              <h6 className="mt-2">Total Price - {handleTotalPrice(orderDetail)} IDR</h6>
             </ul>
 
             <CheckOrderSended />
