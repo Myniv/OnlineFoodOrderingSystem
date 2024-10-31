@@ -26,7 +26,7 @@ const OrderForm = () => {
       return setOrderSended(true);
     }, 5000);
   };
-  
+
   //To select customer
   const handleCustomerChange = (e) => {
     const selectedCustomer = customerList.find(
@@ -105,7 +105,7 @@ const OrderForm = () => {
 
   const totalPrice = formData.menus.reduce((add, menu) => add + menu.price, 0);
 
-  const orderSendedMessage = orderSended ? "Is Ordered" : "Being Pickedup"
+  const orderSendedMessage = orderSended ? "Is Ordered" : "Being Pickedup";
 
   const handleCancelOrder = () => {
     setFormData({
@@ -118,9 +118,34 @@ const OrderForm = () => {
   };
 
   //to filter just the available menu to showup
-  const checkAvailableCustomerMenu = menuList.filter(menuList => menuList.isAvailable)
-  
-  
+  const checkAvailableCustomerMenu = menuList.filter(
+    (menuList) => menuList.isAvailable
+  );
+
+  const CheckOrderSended = () => {
+    if (orderSended) {
+      return (
+        <button
+          type="submit"
+          onClick={handleCancelOrder}
+          className="btn btn-primary mb-3"
+        >
+          Re-Order
+        </button>
+      );
+    } else {
+      return (
+        <button
+          type="submit"
+          onClick={handleCancelOrder}
+          className="btn btn-danger mb-3"
+        >
+          Cancel Order
+        </button>
+      );
+    }
+  };
+
   return (
     <div>
       <h3>Order Form</h3>
@@ -277,24 +302,8 @@ const OrderForm = () => {
               ))}
               <h6 className="mt-2">Total Price - {totalPrice} IDR</h6>
             </ul>
-            {orderSended && (
-              <button
-                type="submit"
-                onClick={handleCancelOrder}
-                className="btn btn-primary mb-3"
-              >
-                Re-Order
-              </button>
-            )}
-            {orderSended == false && (
-              <button
-                type="submit"
-                onClick={handleCancelOrder}
-                className="btn btn-danger mb-3"
-              >
-                Cancel Order
-              </button>
-            )}
+
+            <CheckOrderSended />
           </div>
         </div>
       )}
