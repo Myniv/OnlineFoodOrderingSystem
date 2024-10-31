@@ -11,7 +11,22 @@ const OrderForm = () => {
 
   const [orderSubmitted, setOrderSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [orderSended, setOrderSended] = useState(false);
+  // const [orderTime, setOrderTime] = useState(0);
 
+  //to countdown setOrder for changing orderStatus message, but still bug
+  const orderStatus = () => {
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(setOrderSended(true));
+    //   }, 5000);
+    // });
+
+    setTimeout(() => {
+      return setOrderSended(true);
+    }, 5000);
+  };
+  
   //To select customer
   const handleCustomerChange = (e) => {
     const selectedCustomer = customerList.find(
@@ -70,17 +85,42 @@ const OrderForm = () => {
     e.preventDefault();
     const validationErrors = validateForm();
 
+    const confirmMessage =
+      "Are you sure this is the right order? Once have been submitted, you just have a little time to cancel it!!";
+
     //If there is no error
     if (Object.keys(validationErrors).length === 0) {
-      //Submit order
-      setOrderSubmitted(true);
-      setErrors({});
+      if (confirm(confirmMessage)) {
+        //Submit order
+        setOrderSubmitted(true);
+        orderStatus();
+        // getOrderStatus();
+        setErrors({});
+      }
     } else {
       setErrors(validationErrors);
       setOrderSubmitted(false);
     }
   };
 
+  const totalPrice = formData.menus.reduce((add, menu) => add + menu.price, 0);
+
+  const orderSendedMessage = orderSended ? "Is Ordered" : "Being Pickedup"
+
+  const handleCancelOrder = () => {
+    setFormData({
+      customerName: "",
+      address: "",
+      menus: [],
+    });
+
+    setOrderSubmitted(false);
+  };
+
+  //to filter just the available menu to showup
+  const checkAvailableCustomerMenu = menuList.filter(menuList => menuList.isAvailable)
+  
+  
   return (
     <div>
       <h3>Order Form</h3>
@@ -95,6 +135,7 @@ const OrderForm = () => {
               id="customer"
               className="form-control"
               onChange={handleCustomerChange}
+              value={formData.customerName}
               required
             >
               <option value="" disabled>
@@ -155,9 +196,12 @@ const OrderForm = () => {
               id="menu"
               className="form-control"
               onChange={handleMenuChange}
+              value={formData.menus}
             >
-              <option value="">Select Menu</option>
-              {menuList.map((menu) => (
+              <option value="" disabled>
+                Select Menu
+              </option>
+              {checkAvailableCustomerMenu.map((menu) => (
                 <option key={menu.id} value={menu.id}>
                   {menu.name}
                 </option>
@@ -173,16 +217,19 @@ const OrderForm = () => {
                 {formData.menus.map((menu) => (
                   <li key={menu.id} className="list-group-item">
                     {menu.name} - {menu.category} - {menu.price} IDR
-                    <button
-                      type="button"
-                      className="btn btn-danger btn-sm float-end"
-                      onClick={() => handleRemoveMenu(menu.id)}
-                    >
-                      Remove
-                    </button>
+                    {orderSubmitted == false && (
+                      <button
+                        type="button"
+                        className="btn btn-danger btn-sm float-end"
+                        onClick={() => handleRemoveMenu(menu.id)}
+                      >
+                        Remove
+                      </button>
+                    )}
                   </li>
                 ))}
               </ul>
+              <h5 className="mt-3">Total Price - {totalPrice} IDR</h5>
             </div>
           )}
 
@@ -190,20 +237,36 @@ const OrderForm = () => {
             <div className="invalid-feedback d-block">{errors.menus}</div>
           )}
 
-          <button type="submit" className="btn btn-primary mt-3 mb-3">
-            Submit Order
-          </button>
-        </form>
+          {orderSubmitted == false && (
+            <div>
+              <button type="submit" className="btn btn-primary m-3">
+                Submit Order
+              </button>
 
-        {/* To show up the menu and customer that have been selected*/}
-        {orderSubmitted && (
-          <div className="mt-4">
-            <h4>Order Summary</h4>
+              <button
+                type="submit"
+                onClick={handleCancelOrder}
+                className="btn btn-danger right text-right "
+              >
+                Cancel Order
+              </button>
+            </div>
+          )}
+        </form>
+      </div>
+      {/* To show up the menu and customer that have been selected*/}
+      {orderSubmitted && (
+        <div className="mt-5">
+          <h4>Order Detail</h4>
+          <div className="container border">
             <p>
               <strong>Customer Name:</strong> {formData.customerName}
             </p>
             <p>
               <strong>Address:</strong> {formData.address}
+            </p>
+            <p>
+              <strong>Order Status:</strong> {orderSendedMessage}
             </p>
             <h5>Ordered Menus</h5>
             <ul>
@@ -212,10 +275,29 @@ const OrderForm = () => {
                   {menu.name} - {menu.category} - {menu.price} IDR
                 </li>
               ))}
+              <h6 className="mt-2">Total Price - {totalPrice} IDR</h6>
             </ul>
+            {orderSended && (
+              <button
+                type="submit"
+                onClick={handleCancelOrder}
+                className="btn btn-primary mb-3"
+              >
+                Re-Order
+              </button>
+            )}
+            {orderSended == false && (
+              <button
+                type="submit"
+                onClick={handleCancelOrder}
+                className="btn btn-danger mb-3"
+              >
+                Cancel Order
+              </button>
+            )}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
