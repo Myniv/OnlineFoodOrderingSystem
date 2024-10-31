@@ -11,6 +11,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MenuPage />,
+    errorElement:<div>404 NotFound</div>
   },
   {
     path: "/CustomerPage",
