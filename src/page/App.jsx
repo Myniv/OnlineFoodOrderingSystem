@@ -9,12 +9,9 @@ import { menuList } from "../component/menu/MenuList";
 
 function App() {
   const [customer, setCustomer] = useState(customerList);
-  const [isEditingCustomer, setIsEditingCustomer] = useState(false);
-  const [selectedCustomer, setSelectedCustomer] = useState(null);
 
   const [menu, setMenu] = useState(menuList);
-  const [isEditingMenu, setIsEditingMenu] = useState(false);
-  const [selectedMenu, setSelectedMenu] = useState(null);
+  
 
   const [view, setView] = useState("/MenuPage");
   const renderView = () => {
@@ -24,10 +21,6 @@ function App() {
           <MenuPage
             menu={menu}
             setMenu={setMenu}
-            isEditingMenu={isEditingMenu}
-            setIsEditingMenu={setIsEditingMenu}
-            selectedMenu={selectedMenu}
-            setSelectedMenu={setSelectedMenu}
           />
         );
       case "/CustomerPage":
@@ -35,10 +28,6 @@ function App() {
           <CustomerPage
             customer={customer}
             setCustomer={setCustomer}
-            isEditingCustomer={isEditingCustomer}
-            setIsEditingCustomer={setIsEditingCustomer}
-            selectedCustomer={selectedCustomer}
-            setSelectedCustomer={setSelectedCustomer}
           />
         );
       case "/OrderPage":
