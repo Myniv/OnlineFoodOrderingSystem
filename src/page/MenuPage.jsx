@@ -1,13 +1,10 @@
+/* eslint-disable react/prop-types */
 
 import { AddMenuForm } from "../component/menu/MenuForm";
-import { menuList } from "../component/menu/MenuList";
-import { useState } from "react";
 import { MenuTable } from "../component/menu/MenuTable";
 
-function MenuPage() {
-  const [menu, setMenu] = useState(menuList);
-  const [isEditingMenu, setIsEditingMenu] = useState(false);
-  const [selectedMenu, setSelectedMenu] = useState(null);
+function MenuPage({menu, setMenu, isEditingMenu, setIsEditingMenu, selectedMenu, setSelectedMenu}) {
+  
   return (
     <>
       <div className="container">
