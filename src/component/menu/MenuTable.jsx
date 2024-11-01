@@ -16,7 +16,7 @@ const MenuTable = ({ menu, setMenu, setIsEditingMenu, setSelectedMenu }) => {
   useEffect(() => {
     setFilteredMenu(
       menu.filter((menu) => {
-        return (  
+        return (
           (!category || category === menu.category) &&
           (search === "" ||
             menu.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -30,7 +30,10 @@ const MenuTable = ({ menu, setMenu, setIsEditingMenu, setSelectedMenu }) => {
   }, [category, search, menu]);
 
   const onDeleteMenu = (id) => {
-    setMenu(menu.filter((b) => b.id !== id));
+    const confirmMessage = "Are you sure you want to delete this menu?";
+    if (confirm(confirmMessage)) {
+      setMenu(menu.filter((b) => b.id !== id));
+    }
   };
 
   const onEditingMenu = (id) => {

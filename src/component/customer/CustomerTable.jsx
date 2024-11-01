@@ -31,7 +31,10 @@ const CustomerTable = ({
   }, [customer, search]);
 
   const onDeleteCustomer = (id) => {
-    setCustomer(customer.filter((customer) => customer.id !== id));
+    const confirmMessage = "Are you sure you want to delete this customer?";
+    if (confirm(confirmMessage)) {
+      setCustomer(customer.filter((customer) => customer.id !== id));
+    }
   };
 
   const onEditingCustomer = (id) => {
